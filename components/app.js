@@ -1,79 +1,38 @@
 export default{
-    data(){
-        return{
-            texto: '',
-            textoEncriptado: ''
+    data() {
+        return {
+            inputText: '',
+            encryptedText: '',
+            decryptedText: '',
+            mensaje: '',
         }
-    },methods:{
-        encriptar(){
-            let resultado = '';
-            const texto = this.texto.toLowerCase();
-            for (let i = 0; i < texto.length; i++) {
-                let letra = texto[i];
-                switch (letra) {
-                    case 'e':
-                        resultado += 'enter';
-                        break;
-                    case 'i':
-                        resultado += 'imes';
-                        break;
-                    case 'a':
-                        resultado += 'ai';
-                        break;
-                    case 'o':
-                        resultado += 'ober';
-                        break;
-                    case 'u':
-                        resultado += 'ufat';
-                        break;
-                    default:
-                        resultado += letra;
-                }
+    }, methods: {
+        encriptado() {
+            this.decryptedText = "";
+            let text = this.inputText.toLowerCase();
+            text = text.replace(/e/g, 'enter');
+            text = text.replace(/i/g, 'imes');
+            text = text.replace(/a/g, 'ai');
+            text = text.replace(/o/g, 'ober');
+            text = text.replace(/u/g, 'ufat');
+            this.encryptedText = text;
+            this.mensaje = 'Texto encriptado:'
+        },
+        Desencriptado() {
+            this.encryptedText = "";
+            let text = this.inputText.toLowerCase();
+            text = text.replace(/ufat/g, 'u');
+            text = text.replace(/ober/g, 'o');
+            text = text.replace(/ai/g, 'a');
+            text = text.replace(/imes/g, 'i');
+            text = text.replace(/enter/g, 'e');
+            this.decryptedText = text;
+            this.mensaje = 'Texto desencriptado:'
+
+        },
+        limpiar() {
+            this.encryptedText = "";
+            this.decryptedText = "";
         }
-        this.textoEncriptado = resultado;
-    },
-    desencriptar() {
-        let resultado = '';
-        const texto = this.textoEncriptado;
-        
-        for (let i = 0; i < texto.length; i++) {
-            let palabra = texto.substr(i, 5);
-            switch (palabra) {
-                case 'enter':
-                    resultado += 'e';
-                    i += 4;
-                    break;
-                case 'imes':
-                    resultado += 'i';
-                    i += 3;
-                    break;
-                case 'ai':
-                    resultado += 'a';
-                    i += 1;
-                    break;
-                case 'ober':
-                    resultado += 'o';
-                    i += 3;
-                    break;
-                case 'ufat':
-                    resultado += 'u';
-                    i += 3;
-                    break;
-                default:
-                    resultado += texto[i];
-            }
-        }
-        
-        this.textoEncriptado = resultado;
-    },
-    copiarTexton() {
-        const textarea = document.createElement('textarea');
-        textarea.value = this.textoEncriptado;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        alert('Texto copiado al portapapeles');
-    }
     }
 }
