@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="app.js" type="module"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Encriptador de Texto</h1>
+        
+        <textarea v-model="texto" placeholder="Ingrese el texto"></textarea>
+        
+        <button @click="encriptar">Encriptar</button>
+        <button @click="desencriptar">Desencriptar</button>
+        
+        <div v-if="textoEncriptado">
+            <h2>Texto Encriptado/Desencriptado:</h2>
+            <p>{{ textoEncriptado }}</p>
+            <button @click="copiarTexto">Copiar texto</button>
+        </div>
+    </div>
+</body>
+</html>
